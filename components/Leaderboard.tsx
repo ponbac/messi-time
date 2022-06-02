@@ -33,7 +33,7 @@ const PlayerItem: FC<{
   player: Player;
 }> = ({ rank, player }) => {
   return (
-    <div className="flex flex-row items-center gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
+    <div className="mx-2 flex flex-row items-center gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
       <h1 className="text-4xl font-bold">{rank}.</h1>
       <img
         className="rounded-full p-1 ring-2 ring-primary"

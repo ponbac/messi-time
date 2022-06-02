@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Qatar 2022</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
               setIntroVisible(false);
             }}
           >
-            <h1 className="animate-bounce h-28 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
+            <h1 className="text-center animate-bounce h-full lg:h-48 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
               It&apos;s betting time!
             </h1>
           </motion.div>
@@ -49,6 +49,7 @@ const Home: NextPage = () => {
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: introDuration }}
+          className="min-h-screen flex flex-col"
         >
           <Header />
           <div className="flex flex-col justify-center items-center">
