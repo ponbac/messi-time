@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import Header from "../components/Header";
 import Leaderboard from "../components/Leaderboard";
 
 const Home: NextPage = () => {
@@ -24,9 +25,10 @@ const Home: NextPage = () => {
           rel="stylesheet"
         />
       </Head>
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col">
         {introVisible && (
           <motion.div
+          className="min-h-screen flex items-center justify-center"
             initial={{ opacity: 1 }}
             animate={{ opacity: 0 }}
             transition={{ duration: introDuration }}
@@ -48,7 +50,10 @@ const Home: NextPage = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: introDuration }}
         >
-          <Leaderboard />
+          <Header />
+          <div className="flex flex-col justify-center items-center">
+            <Leaderboard />
+          </div>
         </motion.div>
       </div>
     </>
