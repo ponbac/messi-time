@@ -33,8 +33,8 @@ const PlayerItem: FC<{
   player: Player;
 }> = ({ rank, player }) => {
   return (
-    <div className="mx-2 flex flex-row items-center gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
-      <h1 className="text-4xl font-bold">{rank}.</h1>
+    <div className="mx-2 flex flex-row items-center gap-3 lg:gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
+      <h1 className={`text-4xl font-bold`}>{rank}.</h1>
       <img
         className="rounded-full p-1 ring-2 ring-primary"
         src={player.avatar}
@@ -63,7 +63,7 @@ const PlayerList: FC<{ players: Player[] }> = ({ players }) => {
 
 const Leaderboard: FC<{}> = () => {
   return (
-    <div className="h-full pt-10">
+    <div className="h-full">
       <PlayerList players={examplePlayers} />
     </div>
   );

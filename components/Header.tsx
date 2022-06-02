@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-const Header: FC<{}> = () => {
+const Header: FC<{text: string}> = ({text}) => {
     return (
-        <div className="pt-5 flex flex-row items-center justify-center sticky top-0">
-            <h1 className="font-novaMono font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
-              QATAR 2022
+        <div className="pt-5 text-center flex flex-row items-center justify-center sticky top-0 ">
+            <h1 className="font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
+              {text}
             </h1>
         </div>
     );

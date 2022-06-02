@@ -51,8 +51,8 @@ const Home: NextPage = () => {
           transition={{ duration: 0.5, delay: introDuration }}
           className="min-h-screen flex flex-col"
         >
-          <Header />
-          <div className="flex flex-col justify-center items-center">
+          <Header text="QATAR 2022" />
+          <div className="flex flex-col flex-0 justify-center items-center pt-20">
             <Leaderboard />
           </div>
         </motion.div>
