@@ -40,7 +40,7 @@ const Home: NextPage = () => {
               setIntroVisible(false);
             }}
           >
-            <h1 className="h-28 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
+            <h1 className="animate-bounce h-28 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
               It&apos;s betting time!
             </h1>
           </motion.div>
@@ -48,7 +48,7 @@ const Home: NextPage = () => {
         <motion.div
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: introDuration }}
+          transition={{ duration: 0.5, delay: introDuration }}
         >
           <Header />
           <div className="flex flex-col justify-center items-center">
