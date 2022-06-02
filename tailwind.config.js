@@ -11,6 +11,9 @@ module.exports = {
         neutral: "#E6E9FF",
         white: "#FFFFFF",
       },
+      fontFamily: {
+        novaMono: ["Nova Mono", "sans-serif"],
+      }
     },
   },
   plugins: [],
