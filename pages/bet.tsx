@@ -61,22 +61,22 @@ const exampleGroupF = {
 };
 
 const exampleGroupG = {
-  id: "G",
-  teams: [
-    { id: "25", name: "Italy", flagCode: "IT" },
-    { id: "26", name: "Uruguay", flagCode: "UY" },
-    { id: "27", name: "Peru", flagCode: "PE" },
-    { id: "28", name: "USA", flagCode: "US" },
-  ],
-};
-
-const exampleGroupH = {
   id: "H",
   teams: [
     { id: "29", name: "Brazil", flagCode: "BR" },
     { id: "30", name: "Serbia", flagCode: "RS" },
     { id: "31", name: "Switzerland", flagCode: "CH" },
     { id: "32", name: "Cameroon", flagCode: "CM" },
+  ],
+};
+
+const exampleGroupH = {
+  id: "G",
+  teams: [
+    { id: "25", name: "Portugal", flagCode: "PT" },
+    { id: "26", name: "Uruguay", flagCode: "UY" },
+    { id: "27", name: "Ghana", flagCode: "GH" },
+    { id: "28", name: "South Korea", flagCode: "KR" },
   ],
 };
 
