@@ -1,4 +1,3 @@
-import { NO, SE } from "country-flag-icons/react/3x2";
 import ReorderableGroup from "../components/ReorderableGroup";
 
 const exampleGroupA = {
