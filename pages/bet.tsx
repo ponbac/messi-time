@@ -83,7 +83,7 @@ const exampleGroupH = {
 const Betting: React.FC<{}> = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="grid grid-cols-4 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
         <ReorderableGroup group={exampleGroupA} />
         <ReorderableGroup group={exampleGroupB} />
         <ReorderableGroup group={exampleGroupC} />

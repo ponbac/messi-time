@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const Navbar: FC<{}> = ({}) => {
   return (
-    <div className="flex flex-col min-h-screen w-24 bg-gradient-to-b from-primary to-secondary items-center">
+    <div className="hidden lg:flex flex-col min-h-screen w-24 bg-gradient-to-b from-primary to-secondary items-center">
       <Link href={`/user/pontus`}>
         <img
           className="mt-6 rounded-full p-1 ring-2 ring-secondary transition-all hover:cursor-pointer hover:ring-4"
