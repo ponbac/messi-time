@@ -70,7 +70,7 @@ const PlayerList: FC<{ players: Player[] }> = ({ players }) => {
 
 const Leaderboard: FC<{}> = () => {
   return (
-    <div className="h-full">
+    <div className="h-full mb-6">
       <PlayerList players={examplePlayers} />
     </div>
   );

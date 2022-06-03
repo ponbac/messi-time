@@ -49,7 +49,9 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
           transition={{ duration: 0.5, delay: introDuration }}
           className="min-h-screen flex flex-row"
         >
-          <Navbar />
+          <div className="fixed">
+            <Navbar />
+          </div>
           <div className="flex flex-col flex-1">
             {/* <Header text="QATAR 2022" />
             <div className="flex flex-col flex-0 justify-center items-center pt-20">
