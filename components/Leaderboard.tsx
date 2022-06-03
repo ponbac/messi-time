@@ -24,7 +24,13 @@ const examplePlayers = [
     name: "Pontus Backman",
     description: "Admino",
     avatar: "https://i.pravatar.cc/303",
-    score: 39,
+    score: 99,
+  },
+  {
+    name: "Sven-Erik Svedberg",
+    description: "Winter is coming",
+    avatar: "https://i.pravatar.cc/304",
+    score: 99,
   },
 ];
 
@@ -33,7 +39,7 @@ const PlayerItem: FC<{
   player: Player;
 }> = ({ rank, player }) => {
   return (
-    <div className="mx-2 flex flex-row items-center gap-5 lg:gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
+    <div className="hover:cursor-pointer hover:bg-primary/30 transition-all mx-2 flex flex-row items-center gap-5 lg:gap-11 font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
       <h1 className={`text-4xl font-bold`}>{rank}.</h1>
       <img
         className="rounded-full p-1 ring-2 ring-primary"
@@ -52,6 +58,7 @@ const PlayerItem: FC<{
 };
 
 const PlayerList: FC<{ players: Player[] }> = ({ players }) => {
+  players.sort((a, b) => b.score - a.score);
   return (
     <ul className="space-y-2">
       {players.map((player, index) => {
