@@ -6,6 +6,7 @@ type Group = {
 type Team = {
     id: string;
     name: string;
+    flagCode: string;
 }
 
 type Player = {

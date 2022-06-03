@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { Reorder } from "framer-motion";
 import { useState } from "react";
-import { US } from 'country-flag-icons/react/3x2'
+import { SE, US } from "country-flag-icons/react/3x2";
 
 const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
   return (
@@ -12,7 +13,11 @@ const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
         width={70}
         height={70}
       /> */}
-      <US title={team.name} className="w-8"></US>
+      <img
+        className="w-10"
+        alt={`${team.name} flag`}
+        src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${team.flagCode}.svg`}
+      />
       <h1>{team.name}</h1>
     </div>
   );
@@ -23,7 +28,7 @@ const ReorderableGroup: React.FC<{ group: Group }> = ({ group }) => {
 
   return (
     <div className="flex flex-col items-center">
-        <p className="text-xl font-bold font-mono">Group {group.id}</p>
+      <p className="text-xl font-bold font-mono">Group {group.id}</p>
       <Reorder.Group
         axis="y"
         values={groupItem}
