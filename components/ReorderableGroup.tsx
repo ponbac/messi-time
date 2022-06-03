@@ -4,7 +4,7 @@ import { US } from 'country-flag-icons/react/3x2'
 
 const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
   return (
-    <div className="w-44 hover:cursor-pointer hover:bg-primary/30 transition-all mx-2 flex flex-row items-center font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
+    <div className="gap-2 w-44 hover:cursor-pointer hover:bg-primary/30 transition-all mx-2 flex flex-row items-center font-mono bg-gray-400/30 backdrop-blur-sm py-2 px-4 rounded-lg">
       {/* <img
         className="rounded-full p-1 ring-2 hover:ring-4 transition-all ring-primary"
         src={player.avatar}
@@ -12,7 +12,7 @@ const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
         width={70}
         height={70}
       /> */}
-      <US title={team.name} className="w-12"></US>
+      <US title={team.name} className="w-8"></US>
       <h1>{team.name}</h1>
     </div>
   );

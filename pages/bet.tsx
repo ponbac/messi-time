@@ -16,7 +16,7 @@ const exampleGroupB = {
       { id: "5", name: "Brazil" },
       { id: "6", name: "England" },
       { id: "7", name: "Belgium" },
-      { id: "8", name: "North Korea" },
+      { id: "8", name: "Finland" },
     ],
   };
 
