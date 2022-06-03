@@ -1,5 +1,6 @@
 import { Reorder } from "framer-motion";
 import { useState } from "react";
+import { US } from 'country-flag-icons/react/3x2'
 
 const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
   return (
@@ -11,6 +12,7 @@ const GroupItem: React.FC<{ team: Team }> = ({ team }) => {
         width={70}
         height={70}
       /> */}
+      <US title={team.name} className="w-12"></US>
       <h1>{team.name}</h1>
     </div>
   );
