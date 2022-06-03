@@ -30,7 +30,7 @@ const examplePlayers = [
     name: "Sven-Erik Svedberg",
     description: "Winter is coming",
     avatar: "https://i.pravatar.cc/304",
-    score: 99,
+    score: 38,
   },
 ];
 

@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useState } from "react";
 import Header from "../components/Header";
 import Leaderboard from "../components/Leaderboard";
+import Navbar from "../components/Navbar";
 
 const Home: NextPage = () => {
   const [introVisible, setIntroVisible] = useState(true);
@@ -28,7 +29,7 @@ const Home: NextPage = () => {
       <div className="min-h-screen flex flex-col">
         {introVisible && (
           <motion.div
-          className="min-h-screen flex items-center justify-center"
+            className="min-h-screen flex items-center justify-center"
             initial={{ opacity: 1 }}
             animate={{ opacity: 0 }}
             transition={{ duration: introDuration }}
@@ -49,11 +50,14 @@ const Home: NextPage = () => {
           initial={{ y: 0, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: introDuration }}
-          className="min-h-screen flex flex-col"
+          className="min-h-screen flex flex-row"
         >
-          <Header text="QATAR 2022" />
-          <div className="flex flex-col flex-0 justify-center items-center pt-20">
-            <Leaderboard />
+          <Navbar />
+          <div className="flex flex-col flex-1">
+            <Header text="QATAR 2022" />
+            <div className="flex flex-col flex-0 justify-center items-center pt-20">
+              <Leaderboard />
+            </div>
           </div>
         </motion.div>
       </div>
