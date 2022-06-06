@@ -1,4 +1,4 @@
-import ReorderableGroup from "../components/ReorderableGroup";
+import ReorderableGroup from "../../components/ReorderableGroup";
 
 const exampleGroupA = {
   id: "A",
@@ -60,7 +60,7 @@ const exampleGroupF = {
   ],
 };
 
-const exampleGroupG = {
+const exampleGroupH = {
   id: "H",
   teams: [
     { id: "29", name: "Brazil", flagCode: "BR" },
@@ -70,7 +70,7 @@ const exampleGroupG = {
   ],
 };
 
-const exampleGroupH = {
+const exampleGroupG = {
   id: "G",
   teams: [
     { id: "25", name: "Portugal", flagCode: "PT" },
