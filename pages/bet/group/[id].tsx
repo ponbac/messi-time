@@ -97,6 +97,19 @@ const GroupBlock: FC<{}> = ({}) => {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="loading-indicator">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen font-mono flex flex-col items-center justify-center gap-4 my-6">
       <motion.div
