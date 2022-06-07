@@ -13,7 +13,7 @@ const Navbar: FC<{}> = ({}) => {
       <Link href={`/user/pontus`}>
         <img
           className="mt-6 rounded-full p-1 ring-2 ring-secondary transition-all hover:cursor-pointer hover:ring-4"
-          src={"https://i.pravatar.cc/305"}
+          src={"https://avatars.dicebear.com/api/big-ears-neutral/Bakuman.svg"}
           alt={`Avatar`}
           width={60}
           height={60}

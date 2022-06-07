@@ -5,31 +5,31 @@ const examplePlayers = [
   {
     name: "Jesperina Bergmano",
     description: "Hybrid 2000X",
-    avatar: "https://i.pravatar.cc/300",
+    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Jesperina.svg",
     score: 72,
   },
   {
     name: "Mackovic Kjellberg",
     description: "Gigakicker",
-    avatar: "https://i.pravatar.cc/301",
+    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Mockovic.svg",
     score: 59,
   },
   {
     name: "Nelson Seijsing",
     description: "Sleeping Hinata",
-    avatar: "https://i.pravatar.cc/302",
+    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Nelson.svg",
     score: 55,
   },
   {
     name: "Pontus Backman",
     description: "Admino",
-    avatar: "https://i.pravatar.cc/303",
+    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Bakuman.svg",
     score: 99,
   },
   {
     name: "Sven-Erik Svedberg",
     description: "Winter is coming",
-    avatar: "https://i.pravatar.cc/304",
+    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Svedbo.svg",
     score: 38,
   },
 ];
