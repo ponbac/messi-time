@@ -18,7 +18,16 @@ const Betting: React.FC<{}> = () => {
   }, []);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="loading-indicator">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      </div>
+    );
   }
 
   return (
