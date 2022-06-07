@@ -10,6 +10,7 @@ const fetchGroup = async (groupId: string): Promise<Group> => {
     games: [],
   };
 
+  // TODO: Don't fetch teams here, still fetches them multiple times from the games...
   const { data: teams, error: teamsError } = await SUPABASE.from("teams")
     .select()
     .eq("groupId", groupId.toUpperCase());

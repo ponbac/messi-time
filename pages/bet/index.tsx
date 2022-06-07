@@ -3,29 +3,20 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import ReorderableGroup from "../../components/ReorderableGroup";
-import { fetchAllGroups } from "../../utils/dataFetcher";
+import { useGroups } from "../../utils/dataFetcher";
 
 const Betting: React.FC<{}> = () => {
-  const [groups, setGroups] = useState<Group[]>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchAllGroups().then((groups) => {
-      setGroups(groups);
-      setIsLoading(false);
-    });
-  }, []);
+  const {groups, isLoading, isError} = useGroups();
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
         <div className="loading-indicator">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     );
   }

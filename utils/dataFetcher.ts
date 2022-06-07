@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import useSWR, { Fetcher } from "swr";
 
 const API_URL = "/api";
 const SUPABASE = createClient(
@@ -12,11 +13,12 @@ const SUPABASE = createClient(
     detectSessionInUrl: true,
   }
 );
+const FETCHER = (url: RequestInfo) => fetch(url).then(r => r.json())
 
-const fetchAllGroups = async (): Promise<Group[]> => {
-  const response = await fetch(`${API_URL}/groups`);
-  const data = await response.json();
-  return data;
+const useGroups = (): {groups: Group[] | undefined, isLoading: boolean, isError: Error} => {
+  const { data, error } = useSWR<Group[]>("/api/groups", FETCHER);
+
+  return { groups: data, isLoading: !error && !data, isError: error };
 };
 
 const fetchGroup = async (groupId: string): Promise<Group> => {
@@ -46,4 +48,4 @@ const fetchTeam = async (teamId?: string, teamName?: string): Promise<Team> => {
   return data;
 };
 
-export { SUPABASE, fetchGroup, fetchAllGroups };
+export { SUPABASE, fetchGroup, useGroups };
