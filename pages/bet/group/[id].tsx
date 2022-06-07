@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
@@ -10,7 +11,7 @@ const TeamBlock: FC<{
   selected: boolean;
   toggleSelectedTeam: (team: Team) => void;
 }> = ({ team, selected, toggleSelectedTeam }) => {
-  const flagWidth = "2.5rem";
+  const flagWidth = "2.25rem";
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -41,6 +42,8 @@ const GameBlock: FC<{ game: Game }> = ({ game }) => {
     }
   };
 
+  let date = moment(game.date).format("dddd DD/MM, HH:mm");
+
   return (
     <div className="font-mono flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-8 mb-10 lg:mb-0">
       <TeamBlock
@@ -50,7 +53,7 @@ const GameBlock: FC<{ game: Game }> = ({ game }) => {
       />
       <div className="flex flex-col text-center">
         <p className="text-2xl">vs</p>
-        <p className="text-xs italic">Game ID: {game.id}</p>
+        <p className="text-xs italic">{date}</p>
       </div>
       <TeamBlock
         team={game.awayTeam}
@@ -67,6 +70,15 @@ const GroupBlock: FC<{}> = ({}) => {
 
   const [group, setGroup] = useState<Group>();
   const [isLoading, setIsLoading] = useState(false);
+
+  const groupOrder = ["A", "B", "C", "D", "E", "F", "G", "H"];
+  const nextGroupId = (): string => {
+    const index = groupOrder.indexOf((id as string).toUpperCase());
+    if (index == -1) {
+      return "";
+    }
+    return groupOrder[index + 1];
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -101,9 +113,15 @@ const GroupBlock: FC<{}> = ({}) => {
           group.games?.map((game) => <GameBlock key={game.id} game={game} />)}
       </motion.div>
 
-      <Link href="/bet/group/b">
+      <Link
+        href={
+          (id as string).toUpperCase() === "H"
+            ? "/"
+            : `/bet/group/${nextGroupId()}`
+        }
+      >
         <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-neutral transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
-          Next Group
+          {(id as string).toUpperCase() === "H" ? "Save!" : "Next Group"}
         </div>
       </Link>
     </div>

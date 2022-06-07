@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import ReorderableGroup from "../../components/ReorderableGroup";
@@ -21,7 +22,7 @@ const Betting: React.FC<{}> = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex justify-center items-center min-h-screen"
+      className="flex flex-col justify-center items-center min-h-screen"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 my-6">
         {groups &&
@@ -29,6 +30,11 @@ const Betting: React.FC<{}> = () => {
             <ReorderableGroup key={group.id} group={group} />
           ))}
       </div>
+      <Link href="/bet/group/a">
+        <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-neutral transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
+          Games &#8594;
+        </div>
+      </Link>
     </motion.div>
   );
 };

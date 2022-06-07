@@ -3,8 +3,9 @@ const TeamFlag: React.FC<{ team: Team; width: string }> = ({ team, width }) => {
   return (
     <img
       style={{ width: width }}
+      className="rounded-sm"
       alt={`${team.name} flag`}
-      src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${team.flagCode}.svg`}
+      src={`https://flagicons.lipis.dev/flags/4x3/${team.flagCode}.svg`}
     />
   );
 };
