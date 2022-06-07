@@ -1,0 +1,113 @@
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { FC, useEffect, useState } from "react";
+import TeamFlag from "../../../components/TeamFlag";
+import { fetchGroup } from "../../../utils/dataFetcher";
+
+const TeamBlock: FC<{
+  team: Team;
+  selected: boolean;
+  toggleSelectedTeam: (team: Team) => void;
+}> = ({ team, selected, toggleSelectedTeam }) => {
+  const flagWidth = "2.5rem";
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    toggleSelectedTeam(team);
+  };
+
+  return (
+    <button
+      className={
+        "gap-2 bg-gray-400/30 backdrop-blur-sm py-2 px-4 flex flex-row items-center justify-between w-60 p-4 rounded-xl transition-all " +
+        (selected == true ? "bg-green-600/40" : "")
+      }
+      onClick={handleClick}
+    >
+      <p className="text-xl">{team.name}</p>
+      <TeamFlag team={team} width={flagWidth} />
+    </button>
+  );
+};
+
+const GameBlock: FC<{ game: Game }> = ({ game }) => {
+  const [selectedTeam, setSelectedTeam] = useState<Team>();
+  const teamClickHandler = (team: Team) => {
+    if (selectedTeam?.id == team.id) {
+      setSelectedTeam(undefined);
+    } else {
+      setSelectedTeam(team);
+    }
+  };
+
+  return (
+    <div className="font-mono flex flex-col lg:flex-row items-center justify-center gap-1 lg:gap-8 mb-10 lg:mb-0">
+      <TeamBlock
+        team={game.homeTeam}
+        selected={game.homeTeam.id == selectedTeam?.id}
+        toggleSelectedTeam={teamClickHandler}
+      />
+      <div className="flex flex-col text-center">
+        <p className="text-2xl">vs</p>
+        <p className="text-xs italic">Game ID: {game.id}</p>
+      </div>
+      <TeamBlock
+        team={game.awayTeam}
+        selected={game.awayTeam.id == selectedTeam?.id}
+        toggleSelectedTeam={teamClickHandler}
+      />
+    </div>
+  );
+};
+
+const GroupBlock: FC<{}> = ({}) => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [group, setGroup] = useState<Group>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchGroup(id as string).then((group) => {
+      setGroup(group);
+      console.log(group);
+      setIsLoading(false);
+    });
+  }, [id]);
+
+  if (!id) {
+    return (
+      <div className="font-mono flex flex-row items-center justify-center">
+        No group ID provided!
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen font-mono flex flex-col items-center justify-center gap-4 my-6">
+      <motion.div
+        className="flex flex-col items-center justify-center gap-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        key={group?.id}
+      >
+        <h1 className="text-4xl font-bold" key={"header-" + group?.id}>
+          Group {(id as string).toUpperCase()}
+        </h1>
+        {group &&
+          group.games?.map((game) => <GameBlock key={game.id} game={game} />)}
+      </motion.div>
+
+      <Link href="/bet/group/b">
+        <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-neutral transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
+          Next Group
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+export default GroupBlock;

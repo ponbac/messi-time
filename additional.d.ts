@@ -1,6 +1,7 @@
 type Group = {
     id: string;
     teams: Team[];
+    games: Game[];
 };
 
 type Team = {
@@ -9,8 +10,9 @@ type Team = {
     flagCode: string;
 }
 
-type Match = {
+type Game = {
     id: string;
+    finished: boolean;
     homeTeam: Team;
     awayTeam: Team;
     homeGoals: number;
