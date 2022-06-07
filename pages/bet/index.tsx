@@ -7,7 +7,7 @@ import { fetchAllGroups } from "../../utils/dataFetcher";
 
 const Betting: React.FC<{}> = () => {
   const [groups, setGroups] = useState<Group[]>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -16,6 +16,10 @@ const Betting: React.FC<{}> = () => {
       setIsLoading(false);
     });
   }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <motion.div
