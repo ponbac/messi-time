@@ -101,17 +101,17 @@ const GroupBlock: FC<{}> = ({}) => {
     return (
       <div className="min-h-screen flex justify-center items-center">
         <div className="loading-indicator">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen font-mono flex flex-col items-center justify-center gap-4 my-6">
+    <div className="min-h-screen font-mono flex flex-col items-center justify-center my-6">
       <motion.div
         className="flex flex-col items-center justify-center gap-4"
         initial={{ opacity: 0 }}
@@ -124,19 +124,18 @@ const GroupBlock: FC<{}> = ({}) => {
         </h1>
         {group &&
           group.games?.map((game) => <GameBlock key={game.id} game={game} />)}
+        <Link
+          href={
+            (id as string).toUpperCase() === "H"
+              ? "/"
+              : `/bet/group/${nextGroupId()}`
+          }
+        >
+          <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-neutral transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
+            {(id as string).toUpperCase() === "H" ? "Save!" : "Next Group"}
+          </div>
+        </Link>
       </motion.div>
-
-      <Link
-        href={
-          (id as string).toUpperCase() === "H"
-            ? "/"
-            : `/bet/group/${nextGroupId()}`
-        }
-      >
-        <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-neutral transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
-          {(id as string).toUpperCase() === "H" ? "Save!" : "Next Group"}
-        </div>
-      </Link>
     </div>
   );
 };
