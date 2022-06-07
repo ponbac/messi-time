@@ -51,7 +51,7 @@ const fetchGroups = async (): Promise<Group[]> => {
     })
   );
 
-  return groups;
+  return groups.sort((a, b) => a.id.localeCompare(b.id));
 };
 
 export default async function handler(
