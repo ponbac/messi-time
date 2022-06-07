@@ -4,7 +4,6 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TocIcon from "@mui/icons-material/Toc";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Icon } from "@mui/material";
 import Link from "next/link";
 
 const Navbar: FC<{}> = ({}) => {

@@ -5,19 +5,21 @@ type Group = {
 };
 
 type Team = {
-    id: string;
+    id: number;
     name: string;
     flagCode: string;
+    groupId: string;
 }
 
 type Game = {
-    id: string;
+    id: number;
     finished: boolean;
     homeTeam: Team;
     awayTeam: Team;
     homeGoals: number;
     awayGoals: number;
     date: string;
+    groupId: string;
 }
 
 type Player = {

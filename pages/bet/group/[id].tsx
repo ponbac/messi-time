@@ -51,7 +51,7 @@ const GameBlock: FC<{ game: Game }> = ({ game }) => {
         selected={game.homeTeam.id == selectedTeam?.id}
         toggleSelectedTeam={teamClickHandler}
       />
-      <div className="flex flex-col text-center">
+      <div className="flex flex-col text-center w-44">
         <p className="text-2xl">vs</p>
         <p className="text-xs italic">{date}</p>
       </div>
@@ -81,12 +81,14 @@ const GroupBlock: FC<{}> = ({}) => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchGroup(id as string).then((group) => {
-      setGroup(group);
-      console.log(group);
-      setIsLoading(false);
-    });
+    if (id != undefined) {
+      setIsLoading(true);
+      fetchGroup(id as string).then((group) => {
+        setGroup(group);
+        console.log(group);
+        setIsLoading(false);
+      });
+    }
   }, [id]);
 
   if (!id) {
