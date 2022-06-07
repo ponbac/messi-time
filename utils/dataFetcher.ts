@@ -48,4 +48,10 @@ const fetchTeam = async (teamId?: string, teamName?: string): Promise<Team> => {
   return data;
 };
 
-export { SUPABASE, fetchGroup, useGroups };
+const useGames = (): {games: Game[] | undefined, isLoading: boolean, isError: Error} => {
+  const { data, error } = useSWR<Game[]>("/api/games", FETCHER);
+
+  return { games: data, isLoading: !error && !data, isError: error };
+};
+
+export { SUPABASE, fetchGroup, useGroups, useGames };

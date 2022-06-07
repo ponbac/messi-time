@@ -69,7 +69,7 @@ const GroupBlock: FC<{}> = ({}) => {
   const { id } = router.query;
 
   const [group, setGroup] = useState<Group>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const groupOrder = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const nextGroupId = (): string => {
@@ -85,7 +85,6 @@ const GroupBlock: FC<{}> = ({}) => {
       setIsLoading(true);
       fetchGroup(id as string).then((group) => {
         setGroup(group);
-        console.log(group);
         setIsLoading(false);
       });
     }

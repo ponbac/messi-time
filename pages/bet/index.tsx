@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import ReorderableGroup from "../../components/ReorderableGroup";
 import { useGroups } from "../../utils/dataFetcher";
 
 const Betting: React.FC<{}> = () => {
-  const {groups, isLoading, isError} = useGroups();
+  const { groups, isLoading, isError } = useGroups();
 
   if (isLoading) {
     return (
