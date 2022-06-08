@@ -132,7 +132,7 @@ const GroupBlock: FC<{}> = ({}) => {
               : `/predict/group/${nextGroupId()}`
           }
         >
-          <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-white transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
+          <div className="hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-white transition-all w-32 hover:w-36 hover:text-gray-400 p-2 rounded-xl font-bold">
             {(id as string).toUpperCase() === "H" ? "Save" : "Next Group"}
           </div>
         </Link>
