@@ -53,10 +53,6 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
             <Navbar />
           </div>
           <div className="flex flex-col flex-1">
-            {/* <Header text="QATAR 2022" />
-            <div className="flex flex-col flex-0 justify-center items-center pt-20">
-              <Leaderboard />
-            </div> */}
             <main>{children}</main>
           </div>
         </motion.div>
