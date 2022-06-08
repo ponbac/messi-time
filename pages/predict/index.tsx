@@ -4,7 +4,7 @@ import Link from "next/link";
 import ReorderableGroup from "../../components/ReorderableGroup";
 import { useGroups } from "../../utils/dataFetcher";
 
-const Betting: React.FC<{}> = () => {
+const Predict: React.FC<{}> = () => {
   const { groups, isLoading, isError } = useGroups();
 
   if (isLoading) {
@@ -33,7 +33,7 @@ const Betting: React.FC<{}> = () => {
             <ReorderableGroup key={group.id} group={group} />
           ))}
       </div>
-      <Link href="/bet/group/a">
+      <Link href="/predict/group/a">
         <div className="mb-6 hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-white transition-all w-32 hover:w-36 hover:text-neutral/80 p-2 rounded-xl font-bold">
           Games &#8594;
         </div>
@@ -42,4 +42,4 @@ const Betting: React.FC<{}> = () => {
   );
 };
 
-export default Betting;
+export default Predict;

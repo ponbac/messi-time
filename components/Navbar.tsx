@@ -25,10 +25,10 @@ const Navbar: FC<{}> = ({}) => {
           <p className="text-neutral font-semibold text-sm font-mono">Home</p>
         </div>
       </Link>
-      <Link href="/bet">
+      <Link href="/predict">
         <div className="mt-4 flex flex-col items-center hover:cursor-pointer hover:italic">
           <SportsSoccerIcon className="fill-neutral w-12 h-12 transition-all hover:w-14 hover:h-14" />
-          <p className="text-neutral font-semibold text-sm font-mono">Bet</p>
+          <p className="text-neutral font-semibold text-sm font-mono">Predict</p>
         </div>
       </Link>
       <Link href="/schedule">
