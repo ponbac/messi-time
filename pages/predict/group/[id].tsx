@@ -22,7 +22,7 @@ const TeamBlock: FC<{
     <button
       className={
         "gap-2 bg-gray-400/30 backdrop-blur-sm py-2 px-4 flex flex-row items-center justify-between w-60 p-4 rounded-xl transition-all " +
-        (selected == true ? "bg-green-600/40" : "")
+        (selected == true ? "bg-green-600/60" : "")
       }
       onClick={handleClick}
     >

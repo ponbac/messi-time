@@ -38,7 +38,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
               setIntroVisible(false);
             }}
           >
-            <h1 className="text-center animate-bounce h-full lg:h-48 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-[#f882bd]">
+            <h1 className="text-center animate-bounce h-full lg:h-48 font-novaMono font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-primary to-secondary">
               It&apos;s betting time!
             </h1>
           </motion.div>

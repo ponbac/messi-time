@@ -58,14 +58,14 @@ const Schedule: FC<{}> = ({}) => {
   }
 
   return (
-    <div className="min-h-screen font-mono flex flex-col items-center justify-center my-6">
+    <div className="min-h-screen font-mono flex flex-col items-center justify-center my-10">
       <motion.div
         className="flex flex-col items-center justify-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-2">
+        <h1 className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary mb-2">
           Schedule
         </h1>
         {games && games?.map((game) => <GameBlock key={game.id} game={game} />)}
