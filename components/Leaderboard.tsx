@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { fetchAllUsers } from "../utils/dataFetcher";
 
@@ -96,9 +97,14 @@ const Leaderboard: FC<{}> = () => {
   }
 
   return (
-    <div className="h-full mb-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="h-full mb-6"
+    >
       <PlayerList players={players} />
-    </div>
+    </motion.div>
   );
 };
 
