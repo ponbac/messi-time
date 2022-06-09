@@ -22,7 +22,8 @@ type Game = {
     groupId: string;
 }
 
-type Player = {
+type PlayerUser = {
+    id: string;
     name: string;
     description: string;
     avatar: string;

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { SUPABASE } from "../../utils/dataFetcher";
+import { SUPABASE, updateUserData } from "../../utils/dataFetcher";
 
 const SignInButton: React.FC<{}> = ({}) => {
   async function signInWithDiscord() {
@@ -34,12 +34,21 @@ const SignOutButton: React.FC<{}> = ({}) => {
 };
 
 const SessionInfoButton: React.FC<{}> = ({}) => {
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      e.preventDefault();
-      console.log(SUPABASE.auth.session());
-    };
-  
-    return <button onClick={handleClick}>Session Info!</button>;
+  async function updateMetadata() {
+    const user = SUPABASE.auth.user()
+    const userId = user?.id;
+    if (userId) {
+      updateUserData(userId, 'Pontus', user.user_metadata.avatar_url, 'Hackerutojvi');
+    }
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    updateMetadata();
+    console.log(SUPABASE.auth.user());
   };
+
+  return <button onClick={handleClick}>Session Info!</button>;
+};
 
 export { SignInButton, SignOutButton, SessionInfoButton };

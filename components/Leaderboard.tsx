@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { fetchAllUsers } from "../utils/dataFetcher";
 
 const examplePlayers = [
   {
@@ -25,6 +26,7 @@ const examplePlayers = [
     description: "Admino",
     avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Bakuman.svg",
     score: 99,
+    userId: "4b58cbcf-cbfd-43ec-91f5-92008d6c931a",
   },
   {
     name: "Sven-Erik Svedberg",
@@ -36,7 +38,7 @@ const examplePlayers = [
 
 const PlayerItem: FC<{
   rank: number;
-  player: Player;
+  player: PlayerUser;
 }> = ({ rank, player }) => {
   return (
     <div className="hover:cursor-pointer hover:bg-primary/40 transition-all mx-2 flex flex-row items-center gap-5 lg:gap-11 font-mono bg-gray-400/40 backdrop-blur-sm py-2 px-4 rounded-lg">
@@ -57,7 +59,7 @@ const PlayerItem: FC<{
   );
 };
 
-const PlayerList: FC<{ players: Player[] }> = ({ players }) => {
+const PlayerList: FC<{ players: PlayerUser[] }> = ({ players }) => {
   players.sort((a, b) => b.score - a.score);
   return (
     <ul className="space-y-2">
@@ -69,9 +71,33 @@ const PlayerList: FC<{ players: Player[] }> = ({ players }) => {
 };
 
 const Leaderboard: FC<{}> = () => {
+  const [players, setPlayers] = useState<PlayerUser[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchAllUsers().then((data) => {
+      setPlayers(data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <div className="loading-indicator">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full mb-6">
-      <PlayerList players={examplePlayers} />
+      <PlayerList players={players} />
     </div>
   );
 };
