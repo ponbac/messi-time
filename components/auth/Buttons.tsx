@@ -7,9 +7,7 @@ const SignInButton: React.FC<{}> = ({}) => {
       provider: "discord",
     });
 
-    console.log(user);
-    console.log(session);
-    console.log(error);
+    
   }
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

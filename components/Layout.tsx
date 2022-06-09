@@ -1,28 +1,54 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { motion } from "framer-motion";
 import Head from "next/head";
-import { ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import { isLoggedIn } from "../utils/dataFetcher";
+import { SessionInfoButton, SignInButton, SignOutButton } from "./auth/Buttons";
 
-const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
+const Header: FC<{}> = () => {
+  return (
+    <Head>
+      <title>Backman - Qatar 2022</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="true"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
+  );
+};
+
+const Layout: FC<{ children: ReactNode }> = ({ children }) => {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [introVisible, setIntroVisible] = useState(true);
   const introDuration: number = 3.0;
 
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, []);
+
+  if (!loggedIn) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen flex flex-col items-center justify-center">
+          <SignInButton />
+          <SignOutButton />
+          <SessionInfoButton />
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <Head>
-        <title>Backman - Qatar 2022</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      <Header />
       <div className="min-h-screen flex flex-col">
         {introVisible && (
           <motion.div
