@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
+import { SessionInfoButton, SignInButton, SignOutButton } from "../components/auth/Buttons";
 import Header from "../components/Header";
 import Leaderboard from "../components/Leaderboard";
 
@@ -16,6 +17,9 @@ const Home: NextPage = () => {
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
         <Leaderboard />
       </div>
+      <SignInButton />
+      <SignOutButton />
+      <SessionInfoButton />
     </motion.div>
   );
 };

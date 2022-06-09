@@ -3,6 +3,7 @@ import { FC } from "react";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TocIcon from "@mui/icons-material/Toc";
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 
@@ -37,6 +38,14 @@ const Navbar: FC<{}> = ({}) => {
           <ScheduleIcon className="fill-white w-12 h-12 transition-all hover:w-14 hover:h-14" />
           <p className="text-white font-semibold text-sm font-mono">
             Schedule
+          </p>
+        </div>
+      </Link>
+      <Link href="/halloffame">
+        <div className="mt-4 flex flex-col items-center hover:cursor-pointer hover:italic">
+          <EmojiEventsIcon className="fill-white w-12 h-12 transition-all hover:w-14 hover:h-14" />
+          <p className="text-white font-semibold text-sm font-mono">
+            HoF
           </p>
         </div>
       </Link>
