@@ -3,40 +3,6 @@ import { motion } from "framer-motion";
 import { FC, useEffect, useState } from "react";
 import { fetchAllUsers } from "../utils/dataFetcher";
 
-const examplePlayers = [
-  {
-    name: "Jesperina Bergmano",
-    description: "Hybrid 2000X",
-    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Jesperina.svg",
-    score: 72,
-  },
-  {
-    name: "Mackovic Kjellberg",
-    description: "Gigakicker",
-    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Mockovic.svg",
-    score: 59,
-  },
-  {
-    name: "Nelson Seijsing",
-    description: "Sleeping Hinata",
-    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Nelson.svg",
-    score: 55,
-  },
-  {
-    name: "Pontus Backman",
-    description: "Admino",
-    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Bakuman.svg",
-    score: 99,
-    userId: "4b58cbcf-cbfd-43ec-91f5-92008d6c931a",
-  },
-  {
-    name: "Sven-Erik Svedberg",
-    description: "Winter is coming",
-    avatar: "https://avatars.dicebear.com/api/big-ears-neutral/Svedbo.svg",
-    score: 38,
-  },
-];
-
 const PlayerItem: FC<{
   rank: number;
   player: PlayerUser;
