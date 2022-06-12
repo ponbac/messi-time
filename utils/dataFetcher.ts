@@ -73,7 +73,7 @@ const isLoggedIn = (): boolean => {
   return user ? true : false;
 };
 
-const fetchUserData = async (userId: string): Promise<User> => {
+const fetchUserData = async (userId: string): Promise<PlayerUser> => {
   const response = await fetch(`${API_URL}/users?id=${userId}`);
   const data = await response.json();
   return data;

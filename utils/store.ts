@@ -1,7 +1,12 @@
-import { configureStore, createSlice, ThunkAction } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createListenerMiddleware,
+  createSlice,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import { Action } from "redux";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
-import { authSlice } from "../features/auth/authSlice";
+import { authSlice, signedIn } from "../features/auth/authSlice";
 
 export const subjectSlice = createSlice({
   name: "subject",

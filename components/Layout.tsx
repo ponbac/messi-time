@@ -3,7 +3,12 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { FC, ReactNode, useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { isLoggedIn, SUPABASE } from "../utils/dataFetcher";
+import {
+  fetchUserData,
+  isLoggedIn,
+  SUPABASE,
+  updateUserData,
+} from "../utils/dataFetcher";
 import { SessionInfoButton, SignInButton, SignOutButton } from "./auth/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,6 +21,7 @@ import { sleep } from "../utils/utils";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
 import { APP_URL } from "../utils/constants";
+import { userInfo } from "os";
 
 const Header: FC<{}> = () => {
   return (
@@ -45,9 +51,14 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const authState = useSelector(selectAuthState);
   const dispatch = useDispatch();
 
+  const authIdToPlayerUser = async (authId: string) => {
+    const playerUser = await fetchUserData(authId);
+    return playerUser;
+  };
+
   useEffect(() => {
-    if (authStatus == 'success') {
-      window.location.replace(APP_URL());
+    if (authStatus == "success") {
+      window.location.replace(`${APP_URL()}`);
     }
 
     function listenForStorage() {
@@ -61,13 +72,31 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         dispatch(signedOut());
       }
     }
-    listenForStorage()
+    listenForStorage();
     window.addEventListener("storage", listenForStorage);
 
     return () => {
       window.removeEventListener("storage", listenForStorage);
     };
   }, [authStatus, dispatch]);
+
+  useEffect(() => {
+    if (authState.isAuthenticated) {
+      const authUser = authState.user;
+      if (authUser) {
+        authIdToPlayerUser(authUser.id).then((playerUser) => {
+          if (playerUser.name == null) {
+            updateUserData(
+              authUser.id,
+              authUser.user_metadata.full_name,
+              authUser.user_metadata.avatar_url,
+              "No cool description yet!"
+            )
+          }
+        });
+      }
+    }
+  }, [authState]);
 
   if (!authState.isAuthenticated) {
     return (
