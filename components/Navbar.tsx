@@ -1,21 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import TocIcon from "@mui/icons-material/Toc";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
-import { User } from "@supabase/supabase-js";
-import { getCurrentUser } from "../utils/dataFetcher";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, signedOut } from "../features/auth/authSlice";
+import { SUPABASE } from "../utils/dataFetcher";
 
 const Navbar: FC<{}> = ({}) => {
-  const [user, setUser] = useState<User>();
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const user = getCurrentUser();
-    setUser(user ? user : undefined);
-  }, []);
+  async function signOut() {
+    const { error } = await SUPABASE.auth.signOut();
+
+    dispatch(signedOut());
+  }
+
+  const handleSignOutClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    signOut();
+  };
 
   return (
     <div className="hidden lg:flex flex-col min-h-screen w-24 bg-gradient-to-l from-primary to-secondary items-center">
@@ -57,12 +67,13 @@ const Navbar: FC<{}> = ({}) => {
           <p className="text-white font-semibold text-sm font-mono">HoF</p>
         </div>
       </Link>
-      <Link href="/logout">
-        <div className="absolute bottom-3 mt-4 flex flex-col items-center hover:cursor-pointer hover:italic">
-          <LogoutIcon className="fill-white w-12 h-12 transition-all hover:w-14 hover:h-14" />
-          <p className="text-white font-semibold text-sm font-mono">Logout</p>
-        </div>
-      </Link>
+      <div
+        onClick={handleSignOutClick}
+        className="absolute bottom-3 mt-4 flex flex-col items-center hover:cursor-pointer hover:italic"
+      >
+        <LogoutIcon className="fill-white w-12 h-12 transition-all hover:w-14 hover:h-14" />
+        <p className="text-white font-semibold text-sm font-mono">Logout</p>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import moment from "moment";
+import { NextPage } from "next";
 import React, { FC } from "react";
 import TeamFlag from "../components/TeamFlag";
 import { useGames } from "../utils/dataFetcher";
@@ -41,7 +42,7 @@ const GameBlock: FC<{ game: Game }> = ({ game }) => {
   );
 };
 
-const Schedule: FC<{}> = ({}) => {
+const Schedule: NextPage<{}> = ({}) => {
   const { games, isLoading, isError } = useGames();
 
   if (isLoading) {

@@ -3,8 +3,18 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import { FC, ReactNode, useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { isLoggedIn } from "../utils/dataFetcher";
+import { isLoggedIn, SUPABASE } from "../utils/dataFetcher";
 import { SessionInfoButton, SignInButton, SignOutButton } from "./auth/Buttons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectAuthState,
+  signedIn,
+  signedOut,
+} from "../features/auth/authSlice";
+import { NextPage } from "next";
+import { sleep } from "../utils/utils";
+import { User } from "@supabase/supabase-js";
+import { useRouter } from "next/router";
 
 const Header: FC<{}> = () => {
   return (
@@ -25,22 +35,48 @@ const Header: FC<{}> = () => {
 };
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const router = useRouter();
+  const { authStatus } = router.query;
+  
   const [introVisible, setIntroVisible] = useState(true);
   const introDuration: number = 3.0;
 
-  useEffect(() => {
-    setLoggedIn(isLoggedIn());
-  }, []);
+  const authState = useSelector(selectAuthState);
+  const dispatch = useDispatch();
 
-  if (!loggedIn) {
+  // TODO THIS IS BAD!
+  const microSleep = async () => {
+    await sleep(10);
+  }
+
+  useEffect(() => {
+    microSleep();
+    const user = SUPABASE.auth.user();
+    if (user) {
+      dispatch(signedIn(user));
+    } else {
+      dispatch(signedOut());
+    }
+  }, [dispatch]);
+
+  // TODO Not good...
+  if (authStatus == "success") {
+    microSleep();
+    const user = SUPABASE.auth.user();
+    if (user) {
+      dispatch(signedIn(user));
+    } else {
+      dispatch(signedOut());
+    }
+  }
+
+  if (!authState.isAuthenticated) {
     return (
       <>
         <Header />
         <div className="min-h-screen flex flex-col items-center justify-center">
           <SignInButton />
-          <SignOutButton />
-          <SessionInfoButton />
+          {authState.isAuthenticated ? 'LOGGED IN' : 'LOGGED OUT'}
         </div>
       </>
     );

@@ -1,25 +1,67 @@
-import {createStore, AnyAction, Store} from 'redux';
-import {createWrapper, Context, HYDRATE} from 'next-redux-wrapper';
+import { configureStore, createSlice, ThunkAction } from "@reduxjs/toolkit";
+import { Action } from "redux";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import { authSlice } from "../features/auth/authSlice";
 
-export interface State {
-  tick: string;
-}
+export const subjectSlice = createSlice({
+  name: "subject",
 
-// create your reducer
-const reducer = (state: State = {tick: 'init'}, action: AnyAction) => {
-  switch (action.type) {
-    case HYDRATE:
-      // Attention! This will overwrite client state! Real apps should use proper reconciliation.
-      return {...state, ...action.payload};
-    case 'TICK':
-      return {...state, tick: action.payload};
-    default:
-      return state;
-  }
-};
+  initialState: {} as any,
 
-// create a makeStore function
-const makeStore = (context: Context) => createStore(reducer);
+  reducers: {
+    setEnt(state, action) {
+      return action.payload;
+    },
+  },
 
-// export an assembled wrapper
-export const wrapper = createWrapper<Store<State>>(makeStore, {debug: true});
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      console.log("HYDRATE", state, action.payload);
+      return {
+        ...state,
+        ...action.payload.subject,
+      };
+    },
+  },
+});
+
+const makeStore = () =>
+  configureStore({
+    reducer: {
+      [subjectSlice.name]: subjectSlice.reducer,
+      [authSlice.name]: authSlice.reducer,
+    },
+    devTools: true,
+  });
+
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore["getState"]>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppState,
+  unknown,
+  Action
+>;
+
+export const fetchSubject =
+  (id: any): AppThunk =>
+  async (dispatch) => {
+    const timeoutPromise = (timeout: number) =>
+      new Promise((resolve) => setTimeout(resolve, timeout));
+
+    await timeoutPromise(200);
+
+    dispatch(
+      subjectSlice.actions.setEnt({
+        [id]: {
+          id,
+          name: `Subject ${id}`,
+        },
+      })
+    );
+  };
+
+export const wrapper = createWrapper<AppStore>(makeStore);
+
+export const selectSubject = (id: any) => (state: AppState) =>
+  state?.[subjectSlice.name]?.[id];
