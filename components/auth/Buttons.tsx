@@ -8,11 +8,14 @@ const SignInButton: React.FC<{}> = ({}) => {
   const dispatch = useDispatch();
 
   async function signInWithDiscord() {
-    const { user, session, error } = await SUPABASE.auth.signIn({
-      provider: "discord",
-    }, {
-      redirectTo: `${APP_URL()}/?authStatus=success`
-    });
+    const { user, session, error } = await SUPABASE.auth.signIn(
+      {
+        provider: "discord",
+      },
+      {
+        redirectTo: `${APP_URL()}/?authStatus=success`,
+      }
+    );
 
     dispatch(signedIn(user));
   }
@@ -22,7 +25,13 @@ const SignInButton: React.FC<{}> = ({}) => {
     signInWithDiscord();
   };
 
-  return <button onClick={handleClick}>Sign in with Discord</button>;
+  return (
+    <button onClick={handleClick}>
+      <div className="mb-6 hover:cursor-pointer text-center bg-gradient-to-r from-primary to-secondary text-white transition-all w-44 hover:w-48 hover:text-gray-400 p-2 rounded-xl font-bold">
+        Sign in with Discord
+      </div>
+    </button>
+  );
 };
 
 const SignOutButton: React.FC<{}> = ({}) => {

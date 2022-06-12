@@ -92,6 +92,8 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
               authUser.user_metadata.avatar_url,
               "No cool description yet!"
             )
+
+            console.log(playerUser)
           }
         });
       }
