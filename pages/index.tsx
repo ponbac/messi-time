@@ -17,8 +17,6 @@ const Home: NextPage = () => {
       <div className="flex flex-col flex-0 justify-center items-center pt-20">
         <Leaderboard />
       </div>
-      <SignInButton />
-      <SignOutButton />
       <SessionInfoButton />
     </motion.div>
   );

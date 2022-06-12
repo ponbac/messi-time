@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useDispatch } from "react-redux";
 import { signedIn, signedOut } from "../../features/auth/authSlice";
+import { APP_URL } from "../../utils/constants";
 import { SUPABASE, updateUserData } from "../../utils/dataFetcher";
 
 const SignInButton: React.FC<{}> = ({}) => {
@@ -10,7 +11,7 @@ const SignInButton: React.FC<{}> = ({}) => {
     const { user, session, error } = await SUPABASE.auth.signIn({
       provider: "discord",
     }, {
-      redirectTo: 'http://localhost:3000/?authStatus=success',
+      redirectTo: `${APP_URL()}/?authStatus=success`
     });
 
     dispatch(signedIn(user));
@@ -48,7 +49,7 @@ const SessionInfoButton: React.FC<{}> = ({}) => {
     if (userId) {
       updateUserData(
         userId,
-        "Pontus",
+        "Pontusu",
         user.user_metadata.avatar_url,
         "Hackerutojvi"
       );

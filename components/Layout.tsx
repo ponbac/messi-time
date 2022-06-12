@@ -15,6 +15,7 @@ import { NextPage } from "next";
 import { sleep } from "../utils/utils";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
+import { APP_URL } from "../utils/constants";
 
 const Header: FC<{}> = () => {
   return (
@@ -37,38 +38,36 @@ const Header: FC<{}> = () => {
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter();
   const { authStatus } = router.query;
-  
+
   const [introVisible, setIntroVisible] = useState(true);
   const introDuration: number = 3.0;
 
   const authState = useSelector(selectAuthState);
   const dispatch = useDispatch();
 
-  // TODO THIS IS BAD!
-  const microSleep = async () => {
-    await sleep(10);
-  }
-
   useEffect(() => {
-    microSleep();
-    const user = SUPABASE.auth.user();
-    if (user) {
-      dispatch(signedIn(user));
-    } else {
-      dispatch(signedOut());
+    if (authStatus == 'success') {
+      window.location.replace(APP_URL());
     }
-  }, [dispatch]);
 
-  // TODO Not good...
-  if (authStatus == "success") {
-    microSleep();
-    const user = SUPABASE.auth.user();
-    if (user) {
-      dispatch(signedIn(user));
-    } else {
-      dispatch(signedOut());
+    function listenForStorage() {
+      const item = localStorage.getItem("supabase.auth.token");
+      if (item) {
+        const user = SUPABASE.auth.user();
+        if (user) {
+          dispatch(signedIn(user));
+        }
+      } else {
+        dispatch(signedOut());
+      }
     }
-  }
+    listenForStorage()
+    window.addEventListener("storage", listenForStorage);
+
+    return () => {
+      window.removeEventListener("storage", listenForStorage);
+    };
+  }, [authStatus, dispatch]);
 
   if (!authState.isAuthenticated) {
     return (
@@ -76,7 +75,6 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
         <Header />
         <div className="min-h-screen flex flex-col items-center justify-center">
           <SignInButton />
-          {authState.isAuthenticated ? 'LOGGED IN' : 'LOGGED OUT'}
         </div>
       </>
     );
